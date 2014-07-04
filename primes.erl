@@ -1,5 +1,15 @@
 -module(primes).
--export([next/1,next/0,is_prime/1]).
+-export([next/1,next/0,is_prime/1, gen/1]).
+
+gen(Max) ->
+	gen([], 2, Max).
+
+gen(Primes, V, Max) when V < Max ->
+	io:format("~w ~w ~w ~w ~n", [Primes, V, Max, next(Primes)]),
+	N = next(Primes),
+	gen(Primes ++ [N], N, Max);
+gen(Primes, _V, _Max) ->
+	Primes.
 
 next() 		-> [2].
 next([]) 	-> [2];
